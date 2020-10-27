@@ -1,6 +1,36 @@
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   margin: auto;
-  max-width: 38rem;
   padding: 2rem;
+  text-align: center !important;
 }
+
+p {
+
+  margin-left: 250px;
+  margin-right: 250px;
+  text-align: center !important;
+  
+}
+
+#createW {
+
+  margin-top: 25px;
+
+}
+
+h1 {
+
+  font-weight: 400 !important;
+  margin-bottom: 25px !important;
+
+}
+
+hr {
+
+  margin-top: 50px !important;
+
+}
+
+
+

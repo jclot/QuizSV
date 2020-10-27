@@ -12,6 +12,8 @@ const createWindow = () => {
     const pru = new BrowserWindow({
         width: 800,
         height: 600,
+        maxWidth: 800,
+        maxHeight: 600,
         webPreferences: {
             nodeIntegration: true,
             enableRemoteModule: true,
@@ -21,9 +23,6 @@ const createWindow = () => {
 
     // and load the index.html of the app.
     pru.loadFile(path.join(__dirname, 'index.html'));
-
-    // Open the DevTools.
-    pru.webContents.openDevTools();
 
 
 };
