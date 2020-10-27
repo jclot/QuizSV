@@ -1,23 +1,63 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en" class="no-js">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>QuizSV</title>
-    <link rel="stylesheet" href="./style/index.css">
-    <script defer src="./windowsC/createWindow.js"></script>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Heebo:400,700|IBM+Plex+Sans:600" rel="stylesheet">
+    <link rel="stylesheet" href="dist/css/style.css">
+    <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
+    <script defer src="screens/createWindow.js"></script>
 </head>
+<body class="is-boxed has-animations">
+    <div class="body-wrap boxed-container">
+        <header class="site-header">
+            <div class="container">
+                <div class="site-header-inner">
+                    <div class="brand header-brand">
+                        <h1 class="m-0">
+                        </h1>
+                    </div>
+                </div>
+            </div>
+        </header>
 
-<body>
+        <main>
+            <section class="hero">
+                <div class="container">
+                    <div class="hero-inner">
+						<div class="hero-copy">
+	                        <h1 class="hero-title mt-0">QuizSV</h1>
+	                        <p class="hero-paragraph">This application controls the behavior of a student when is taking a test.</p>
+	                        <div class="hero-cta">
+								<a class="button button-primary" id="createW" href="#">Start</a>
+								<div class="lights-toggle">
+									<input id="lights-toggle" type="checkbox" name="lights-toggle" class="switch" >
+									<label for="lights-toggle" class="text-xs"><span>Turn me <span class="label-text">dark</span></span></label>
+								</div>
+							</div>
+						</div>
+						<div class="hero-media">
+							<div class="header-illustration">
+								<img class="header-illustration-image asset-light" src="dist/images/header-illustration-light.svg" alt="Header illustration">
+								<img class="header-illustration-image asset-dark" src="dist/images/header-illustration-dark.svg" alt="Header illustration">
+							</div>
+							<div class="hero-media-illustration">
+								<img class="hero-media-illustration-image asset-light" src="dist/images/hero-media-illustration-light.svg" alt="Hero media illustration">
+								<img class="hero-media-illustration-image asset-dark" src="dist/images/hero-media-illustration-dark.svg" alt="Hero media illustration">
+							</div>
+							<div class="hero-media-container">
+								<img class="hero-media-image asset-light" src="dist/images/hero-media-light.svg" alt="Hero media">
+								<img class="hero-media-image asset-dark" src="dist/images/hero-media-dark.svg" alt="Hero media">
+							</div>
+						</div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
 
-    <h1>QuizSV</h1>
-    <p>Welcome to QuizSv, this application allows you to monitor each of your students while they take a test.</p>
-    <p>Since we are in quarantine, I took the liberty of doing this program to improve the students academically and try to keep them from copying the tests.</p>
-    
-    <hr/>
-
-    <button id="createW" class="btn btn-info">Hola tia</button>
+    <script src="dist/js/main.min.js"></script>
 </body>
-
 </html>
