@@ -5,60 +5,54 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>QuizSV</title>
-    <link href="https://fonts.googleapis.com/css?family=Heebo:400,700|IBM+Plex+Sans:600" rel="stylesheet">
     <link rel="stylesheet" href="../dist/css/style.css">
-    <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
-    <link rel="stylesheet" href="../dist/css/dragable.css">
+
 </head>
+
+<style>
+    .loader {
+      border: 16px solid #f3f3f3;
+      border-radius: 50%;
+      border-top: 16px solid #535FD7;
+      width: 120px;
+      height: 120px;
+      -webkit-animation: spin 2s linear infinite; /* Safari */
+      animation: spin 2s linear infinite;
+      margin-left: 240px;
+      margin-top: 135px;
+    }
+    
+    /* Safari */
+    @-webkit-keyframes spin {
+      0% { -webkit-transform: rotate(0deg); }
+      100% { -webkit-transform: rotate(360deg); }
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+
+    html, body{
+
+        padding: 0 !important;
+        position: unset !important;
+        background-color: transparent !important;
+        margin: 0 !important;
+        -webkit-app-region: drag !important;
+    }
+    </style>
+
 <div class="dragable">
 </div>
 <body class="is-boxed has-animations">
     <div class="body-wrap boxed-container">
-        <header class="site-header">
-            <div class="container">
-                <div class="site-header-inner">
-                    <div class="brand header-brand">
-                        <h1 class="m-0">
-                        </h1>
-                    </div>
-                </div>
-            </div>
-        </header>
-
         <main>
-            <section class="hero  hero-cpy-w2">
-                <div class="container">
-                    <div class="hero-inner  hero-cpy-w2">
-						<div class="hero-copy hero-cpy-w2">
-                            
-	                        <div class="hero-cta">
-								<!-- <a class="button button-primary" id="createW" >Back To Menu</a> -->
-								<div class="lights-toggle">
-									<input id="lights-toggle" type="checkbox" name="lights-toggle" class="switch"  >
-									<!-- <label for="lights-toggle" class="text-xs"><span>Turn me <span class="label-text">dark</span></span></label> -->
-								</div>
-							</div>
-						</div>
-						<!-- <div class="hero-media">
-							<div class="header-illustration">
-								<img class="header-illustration-image asset-light" src="dist/images/header-illustration-light.svg" alt="Header illustration">
-								<img class="header-illustration-image asset-dark" src="dist/images/header-illustration-dark.svg" alt="Header illustration">
-							</div>
-							<div class="hero-media-illustration">
-								<img class="hero-media-illustration-image asset-light" src="dist/images/hero-media-illustration-light.svg" alt="Hero media illustration">
-								<img class="hero-media-illustration-image asset-dark" src="dist/images/hero-media-illustration-dark.svg" alt="Hero media illustration">
-							</div>
-							<div class="hero-media-container">
-								<img class="hero-media-image asset-light" src="dist/images/hero-media-light.svg" alt="Hero media">
-								<img class="hero-media-image asset-dark" src="dist/images/hero-media-dark.svg" alt="Hero media">
-							</div>
-						</div> -->
-                    </div>
-                </div>
-            </section>
+           <div class="loader"></div>
         </main>
     </div>
-
-    <script src="../dist/js/main.min.js"></script>
 </body>
+
+
 </html>

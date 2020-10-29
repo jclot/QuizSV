@@ -43,7 +43,7 @@ select {
     font-family: "IBM Plex Sans", sans-serif;
     font-size: 14px;
     text-decoration: none !important;
-    text-transform: none;
+    text-transform: uppercase;
     background-color: #E9EDF3;
     color: #535FD7 !important;
     border: none;
