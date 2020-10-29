@@ -9,15 +9,13 @@ if (require('electron-squirrel-startup')) { // eslint-disable-line global-requir
     app.quit();
 }
 
-// nativeTheme.on('updated', function theThemeHasChanged () {
-
-//     updateMyAppTheme(nativeTheme.shouldUseDarkColors)
-
-// })
+let splash;
+let mainWindow;
 
 const createWindow = () => {
     // Create the browser window.
-    const mainWindow = new BrowserWindow({
+   mainWindow = new BrowserWindow({
+       
         width: 1200,
         height: 780,
         maxWidth: 1200,
@@ -26,11 +24,15 @@ const createWindow = () => {
             nodeIntegration: true,
             enableRemoteModule: true,
         },
+        fullscreen: false,
+        backgroundColor: "#fff",
+        
     });
-    // and load the index.html of the app.
+
     mainWindow.loadFile(path.join(__dirname, 'index.html'));
 
 };
+
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.

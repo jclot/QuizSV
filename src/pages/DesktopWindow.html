@@ -8,29 +8,35 @@
     <link href="https://fonts.googleapis.com/css?family=Heebo:400,700|IBM+Plex+Sans:600" rel="stylesheet">
     <link rel="stylesheet" href="../dist/css/style.css">
     <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
-    <link rel="stylesheet" href="../dist/css/InstructiosLines.css">
+    <link rel="stylesheet" href="../dist/css/button.css">
+    <!-- <link rel="stylesheet" href="../dist/css/image-picker.css"> -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
 </head>
 <body class="is-boxed has-animations">
     <div class="body-wrap boxed-container">
         <main>
-            <section class="hero  hero-cpy-w2">
+            <section class="hero ">
                 <div class="container">
-                    <div class="hero-inner  hero-cpy-w2">
-						<div class="hero-copy hero-cpy-w2 hero-cpy-w2-cta">
-                            <h1 class="hero-title mt-0">Instructions</h1>
-                            <hr>
-                            <p class="hero-paragraph"> <strong>1. </strong> Enter the application and press read instructions. </p>
-                            <p class="hero-paragraph"> <strong>2. </strong> Read these instructions carefully and press Ctrl or Cmd + W when you finish reading. </p>
-                            <p class="hero-paragraph"> <strong>3. </strong> Press start and then choose a screen. (This program by default choose autmoatically the first screen) </p>
-                            <p class="hero-paragraph"> <strong>4. </strong> Press start to see your screen or press stop to stop seeing your screen. </p>
-                            <p class="hero-paragraph"> <strong>5. </strong> Press save file to save the mp4 file. </p>
-                            <p class="hero-paragraph"><strong> Ctrl or Cmd + W to close this window. </strong> </p>
-	                        <div class="hero-cta">
-								<!-- <a class="button button-primary" id="createW" >Back To Menu</a> -->
-								<div class="lights-toggle">
+                    <div class="hero-inner">
+						<div class="hero-copy hero-cpy-w2">
+	                        <h1 class="hero-title mt-0"><a href="../index.html"><i class="material-icons button-back">arrow_back</i></a> QuizSV</h1>
+	                        <p class="hero-paragraph">Choose your screen and start recording</p>
+                            <video width="520" height="290" autoplay ></video>
+                            <div class="hero-cta-tac">
+                                
+                                <select id="picture" class="image-picker show-html">
+                                </select>
+                                <a class="button button-primary" id="button-start-stop" >Start / Stop</a>
+                                <a class="button button-primary" id="button-start-stop" >Start Recording / Stop Recording</a>
+                                <a class="button button-primary" id="button-save-video" >Save Video</a>
+                                
+                    
+								<!-- <div class="lights-toggle"> -->
 									<input id="lights-toggle" type="checkbox" name="lights-toggle" class="switch" checked="checked"  >
 									<!-- <label for="lights-toggle" class="text-xs"><span>Turn me <span class="label-text">dark</span></span></label> -->
-								</div>
+                                <!-- </div> -->
+                                
 							</div>
 						</div>
 						<div class="hero-media">
@@ -43,7 +49,7 @@
 								<img class="hero-media-illustration-image asset-dark" src="../dist/images/hero-media-illustration-dark.svg" alt="Hero media illustration">
 							</div>
 							<div class="hero-media-container">
-								<img class="hero-media-image asset-light" src="../dist/images/hero-media-light.svg" alt="Hero media" width="300">
+								<img class="hero-media-image asset-light" src="../dist/images/hero-media-light.svg" alt="Hero media" width="350">
 								<img class="hero-media-image asset-dark" src="../dist/images/hero-media-dark.svg" alt="Hero media">
 							</div>
 						</div>
@@ -54,5 +60,8 @@
     </div>
 
     <script src="../dist/js/main.min.js"></script>
+    <script src="../dist/js/jquery.js"></script>
+    <script src="../assets/js/desktopCapturer.js"></script>
+    <!-- <script src="../assets/js/image-picker.min.js"></script> -->
 </body>
 </html>

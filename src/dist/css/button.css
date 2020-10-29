@@ -1,0 +1,56 @@
+a {
+
+    margin-top: 20px;
+
+} 
+
+.hero-cta-tac {
+
+    margin: 0;
+} 
+
+.button {
+
+    margin-left: 10px;
+
+
+}
+
+
+.button-back {
+
+    margin-right: 10px;
+    color: "#535FD7";
+
+}
+
+.button-back:hover {
+
+    color: blue;
+
+}
+
+video {
+    background: black center no-repeat;
+    border: 1px solid #e2e2e2;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.2);
+    border-radius: 7px;
+  }
+
+select {
+
+
+    font-family: "IBM Plex Sans", sans-serif;
+    font-size: 14px;
+    text-decoration: none !important;
+    background-color: #E9EDF3;
+    color: #535FD7 !important;
+    border: none;
+    border-radius: 2px;
+    padding: 16px 32px;
+    height: 52px;
+    text-align: left;
+    margin-left: 10px;
+    margin-top: 20px;
+
+}

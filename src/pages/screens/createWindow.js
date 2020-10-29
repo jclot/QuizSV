@@ -1,15 +1,18 @@
-const electron = require('electron')
+const electron = require('electron');
 const BrowserWindow = electron.remote.BrowserWindow;
+
 
 
 var button = document.getElementById("createW");
 
 const path = require('path');
 
+let InstructionsScreen;
+let splash;
 
-const createWindow = () => {
+const createWindowInstructions = () => {
     // Create the browser window.
-    const pru = new BrowserWindow({
+     InstructionsScreen = new BrowserWindow({
         width: 800,
         height: 600,
         maxWidth: 800,
@@ -18,17 +21,23 @@ const createWindow = () => {
             nodeIntegration: true,
             enableRemoteModule: true,
         },
+        fullscreen: false,
+        backgroundColor: "#fff",
+      
+
 
     });
 
-    // and load the index.html of the app.
-    pru.loadFile(path.join(__dirname, 'index.html'));
 
+    InstructionsScreen.loadFile(path.join(__dirname, 'pages/Instructions.html'));
 
 };
 
 button.addEventListener("click", function() {
 
-    createWindow();
+    createWindowInstructions();
 
 })
+
+
+

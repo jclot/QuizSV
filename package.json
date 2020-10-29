@@ -1,7 +1,7 @@
 {
   "name": "quizsv",
   "productName": "quizsv",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "My Electron application description",
   "main": "src/index.js",
   "scripts": {
@@ -54,6 +54,6 @@
     "@electron-forge/maker-rpm": "^6.0.0-beta.54",
     "@electron-forge/maker-squirrel": "^6.0.0-beta.54",
     "@electron-forge/maker-zip": "^6.0.0-beta.54",
-    "electron": "10.1.5"
+    "electron": "^10.1.5"
   }
 }
