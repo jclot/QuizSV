@@ -1,6 +1,6 @@
 
 
-const { app, BrowserWindow, nativeTheme } = require('electron');
+const { app, BrowserWindow, Tray } = require('electron');
 const path = require('path');
 
 
@@ -15,11 +15,11 @@ let mainWindow;
 const createWindow = () => {
     // Create the browser window.
    mainWindow = new BrowserWindow({
-       
+       titleBarStyle: 'hidden',
         width: 1200,
-        height: 780,
+        height: 880,
         maxWidth: 1200,
-        maxHeight: 780,
+        maxHeight: 880,
         webPreferences: {
             nodeIntegration: true,
             enableRemoteModule: true,

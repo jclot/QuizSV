@@ -1,0 +1,11 @@
+.dragable {
+
+    
+    position: fixed;
+    padding: 12px !important;
+    padding-left: 2000px !important;
+    background: #E9EDF3;
+    -webkit-app-region: drag;
+
+}
+

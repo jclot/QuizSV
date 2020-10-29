@@ -13,6 +13,7 @@ let splash;
 const createWindowInstructions = () => {
     // Create the browser window.
      InstructionsScreen = new BrowserWindow({
+        titleBarStyle: 'hidden',
         width: 800,
         height: 600,
         maxWidth: 800,

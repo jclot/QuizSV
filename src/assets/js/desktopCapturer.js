@@ -3,12 +3,13 @@ const {desktopCapturer} = require('electron');
 
 let desktopSharing = false;
 let localStream;
+let cameraSharing = false;
 
-function refresh() {
-  $('select').append({
-    hide_select : true
-  });
-}
+// function refresh() {
+//   $('select').append({
+//     hide_select : true
+//   });
+// }
 
 function addSource(source) {
   $('select').append($('<option>', {
@@ -16,7 +17,7 @@ function addSource(source) {
     text: source.name
   }));
   $('select option[value="' + source.id.replace(":", "") + '"]').attr('data-img-src', source.thumbnail.toDataURL());
-  refresh();
+  
 }
 
 function showSources() {
@@ -41,9 +42,9 @@ function toggle() {
 
     document.getElementById('button-start-stop')
 
-    $('select').empty();
-    showSources();
-    refresh();
+    $('select').showSources();
+    
+    
   }
 }
 
@@ -71,7 +72,7 @@ function onAccessApproved(desktop_id) {
 
   function gotStream(stream) {
     localStream = stream;
-    let video = document.querySelector('video');
+    let video = document.getElementById('screen');
     video.srcObject = stream;
     video.onloadedmetadata = (e) => video.play();
     stream.onended = function() {
@@ -88,10 +89,34 @@ function onAccessApproved(desktop_id) {
 
 $(document).ready(function() {
   showSources();
-  refresh();
+
 });
 
 document.getElementById('button-start-stop').addEventListener('click', function(e) {
   toggle();
 });
+
+
+
+function getCamera() {
+  
+  var camera = navigator.mediaDevices.getUserMedia({video: true})
+.then(function(stream){
+
+  document.getElementById('camera').srcObject = stream;
+
+}).catch(function(error) {
+
+  console.log(error);
+
+})
+
+}
+
+document.getElementById('start-camera').addEventListener('click' , function() {
+
+  getCamera()
+
+})
+
 

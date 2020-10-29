@@ -11,8 +11,10 @@
     <link rel="stylesheet" href="../dist/css/button.css">
     <!-- <link rel="stylesheet" href="../dist/css/image-picker.css"> -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    
+    <link rel="stylesheet" href="../dist/css/dragable.css">
 </head>
+<div class="dragable">
+</div>
 <body class="is-boxed has-animations">
     <div class="body-wrap boxed-container">
         <main>
@@ -22,15 +24,15 @@
 						<div class="hero-copy hero-cpy-w2">
 	                        <h1 class="hero-title mt-0"><a href="../index.html"><i class="material-icons button-back">arrow_back</i></a> QuizSV</h1>
 	                        <p class="hero-paragraph">Choose your screen and start recording</p>
-                            <video width="520" height="290" autoplay ></video>
+                            <video width="100" height="100" autoplay id="camera"></video>
+                            <video width="520" height="290" autoplay id="screen" ></video>
                             <div class="hero-cta-tac">
                                 
                                 <select id="picture" class="image-picker show-html">
                                 </select>
                                 <a class="button button-primary" id="button-start-stop" >Start / Stop</a>
                                 <a class="button button-primary" id="button-start-stop" >Start Recording / Stop Recording</a>
-                                <a class="button button-primary" id="button-save-video" >Save Video</a>
-                                
+                                <a class="button button-primary" id="start-camera" >Start Cam / Stop Cam</a>
                     
 								<!-- <div class="lights-toggle"> -->
 									<input id="lights-toggle" type="checkbox" name="lights-toggle" class="switch" checked="checked"  >
@@ -41,7 +43,7 @@
 						</div>
 						<div class="hero-media">
 							<div class="header-illustration">
-								<img class="header-illustration-image asset-light" src="../dist/images/header-illustration-light.svg" alt="Header illustration">
+								<!-- <img class="header-illustration-image asset-light" src="../dist/images/header-illustration-light.svg" alt="Header illustration"> -->
 								<img class="header-illustration-image asset-dark" src="../dist/images/header-illustration-dark.svg" alt="Header illustration">
 							</div>
 							<div class="hero-media-illustration">
