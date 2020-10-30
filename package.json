@@ -1,8 +1,8 @@
 {
   "name": "quizsv",
-  "productName": "quizsv",
-  "version": "2.0.0",
-  "description": "My Electron application description",
+  "productName": "QuizSV",
+  "version": "3.0.0",
+  "description": "This app controls the behavior of a student when is taking a test.",
   "main": "src/index.js",
   "scripts": {
     "start": "electron-forge start",
@@ -19,12 +19,15 @@
   "license": "MIT",
   "config": {
     "forge": {
-      "packagerConfig": {},
+      "packagerConfig": {
+        "name": "QuizSV",
+        "icon": "./src/assets/images/camcorder.icns"
+      },
       "makers": [
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
-            "name": "quizsv"
+            "name": "QuizSV"
           }
         },
         {
@@ -35,18 +38,23 @@
         },
         {
           "name": "@electron-forge/maker-deb",
-          "config": {}
+          "config": {
+            "name": "QuizSV"
+          }
         },
         {
           "name": "@electron-forge/maker-rpm",
-          "config": {}
+          "config": {
+            "name": "QuizSV"
+          }
         }
       ]
     }
   },
   "dependencies": {
     "electron-reload": "^1.5.0",
-    "electron-squirrel-startup": "^1.0.0"
+    "electron-squirrel-startup": "^1.0.0",
+    "update-electron-app": "^2.0.1"
   },
   "devDependencies": {
     "@electron-forge/cli": "^6.0.0-beta.54",

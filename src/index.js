@@ -1,6 +1,12 @@
 const { create } = require('domain');
 const { app, BrowserWindow, Tray, Menu, MenuItem } = require('electron');
 const path = require('path');
+const fs = require('fs')
+require('update-electron-app')({
+  repo: 'https://github.com/jclot/QuizSV',
+  // updateInterval: '1 minute',
+  logger: require('electron-log')
+})
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) { // eslint-disable-line global-require
@@ -36,8 +42,6 @@ const template = [
     {
         label: 'Edit',
         submenu: [
-            { role: 'undo' },
-            { role: 'redo' },
             { type: 'separator' },
             { role: 'cut' },
             { role: 'copy' },
@@ -55,7 +59,6 @@ const template = [
                     ]
                 }
             ] : [
-                { role: 'delete' },
                 { type: 'separator' },
                 { role: 'selectAll' }
             ])
@@ -92,17 +95,15 @@ const template = [
             ])
         ]
     },
-    {
-        role: 'help',
-        submenu: [{
-            label: 'Learn More',
-            click: async() => {
-                const { shell } = require('electron')
-                await shell.openExternal('https://electronjs.org')
-            }
-        }]
-    }
 ]
+
+const fileSaveTest = () => {
+
+  try {fs.writeFileSync('myfile.txt', 'The text Of my file', 'utf-8'); }
+  catch(e) { alert('Failed to save the file'); }
+
+
+}
 
 const menu = Menu.buildFromTemplate(template)
 Menu.setApplicationMenu(menu)
@@ -119,9 +120,9 @@ function createWindow() {
     mainWindow = new BrowserWindow({
         titleBarStyle: 'hidden',
         width: 1200,
-        height: 880,
+        height: 900,
         maxWidth: 1200,
-        maxHeight: 880,
+        maxHeight: 900,
         webPreferences: {
             nodeIntegration: true,
             enableRemoteModule: true,
@@ -157,8 +158,11 @@ function createWindow() {
 app.on('ready', () => {
 
     createWindow()
+    // fileSaveTest()
 
 });
+
+app.setName('QuizSV')
 
 // Quit when all windows are closed, except on macOS. There, it's common
 // for applications and their menu bar to stay active until the user quits

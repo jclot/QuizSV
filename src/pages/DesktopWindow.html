@@ -23,16 +23,20 @@
                     <div class="hero-inner">
 						<div class="hero-copy hero-cpy-w2">
 	                        <h1 class="hero-title mt-0"><a href="../index.html"><i class="material-icons button-back">arrow_back</i></a> QuizSV</h1>
-	                        <p class="hero-paragraph">Choose your screen and start recording</p>
-                            <video width="100" height="100" autoplay id="camera"></video>
-                            <video width="520" height="290" autoplay id="screen" ></video>
+                            <p class="hero-paragraph">Choose your screen and start recording</p>
+                            
+                            <div class="button-screen-sources">
+                                <a class="button button-primary" id="videoSelectBtn" >Choose The Screen</a>
+                                <a class="button button-primary" id="stopVideoSelectBtn" >Stop Screen</a>
+                            </div>
+                            
+                            <video width="560" height="340" autoplay id="screen" ></video>
                             <div class="hero-cta-tac">
                                 
-                                <select id="picture" class="image-picker show-html">
-                                </select>
-                                <a class="button button-primary" id="button-start-stop" >Start / Stop</a>
-                                <a class="button button-primary" id="button-start-stop" >Start Recording / Stop Recording</a>
-                                <a class="button button-primary" id="start-camera" >Start Cam / Stop Cam</a>
+                    
+                                <a class="button button-primary" id="startBtn" >Start Recording</a>
+                                <a class="button button-primary" id="stopBtn" >Stop Recording</a>
+                                
                     
 								<!-- <div class="lights-toggle"> -->
 									<input id="lights-toggle" type="checkbox" name="lights-toggle" class="switch" checked="checked"  >

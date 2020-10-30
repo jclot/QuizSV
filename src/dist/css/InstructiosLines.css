@@ -5,12 +5,18 @@
     font-style: normal !important;
     padding: 0 !important;
     margin-bottom: 15px !important;
-    margin-right: 80px !important;
+    margin-right: 0px !important;
 
 }
 
 strong {
 
     font-size: large;
+
+}
+
+.hero-copy {
+
+    margin-top: 50px !important;
 
 }

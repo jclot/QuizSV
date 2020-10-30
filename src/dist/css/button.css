@@ -37,21 +37,27 @@ video {
     border-radius: 7px;
   }
 
-select {
+#videoSelectBtn {
 
 
-    font-family: "IBM Plex Sans", sans-serif;
-    font-size: 14px;
-    text-decoration: none !important;
-    text-transform: uppercase;
+    /* font-family: "IBM Plex Sans", sans-serif; */
+    /* font-size: 14px; */
+    /* text-decoration: none !important; */
+    /* text-transform: uppercase; */
     background-color: #E9EDF3;
     color: #535FD7 !important;
-    border: none;
-    border-radius: 2px;
-    padding: 16px 32px;
-    height: 52px;
-    text-align: left;
-    margin-left: 10px;
-    margin-top: 20px;
+    /* border: none; */
+    /* border-radius: 2px; */
+    /* padding: 16px 32px; */
+  
+    
+
+
+}
+
+.button-screen-sources {
+
+    margin-bottom: 30px !important;
+
 
 }

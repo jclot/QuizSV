@@ -1,122 +1,126 @@
-const {desktopCapturer} = require('electron');
+const { desktopCapturer, remote } = require('electron');
+
+const { writeFile } = require('fs');
+
+const { dialog, Menu } = remote;
+
+// Global state
+let mediaRecorder; // MediaRecorder instance to capture footage
+const recordedChunks = [];
+const currentWindow = remote.getCurrentWindow();
+
+// Buttons
+const videoElement = document.getElementById('screen');
+
+const startBtn = document.getElementById('startBtn');
+startBtn.onclick = e => {
+  mediaRecorder.start();
+  startBtn.classList.add('is-danger');
+  startBtn.innerText = 'Recording...';
+};
+
+const stopBtn = document.getElementById('stopBtn');
+
+stopBtn.onclick = e => {
+  mediaRecorder.stop();
+  startBtn.classList.remove('is-danger');
+  startBtn.innerText = 'Start';
+};
 
 
-let desktopSharing = false;
-let localStream;
-let cameraSharing = false;
 
-// function refresh() {
-//   $('select').append({
-//     hide_select : true
-//   });
-// }
+const videoSelectBtn = document.getElementById('videoSelectBtn');
+videoSelectBtn.onclick = getVideoSources;
 
-function addSource(source) {
-  $('select').append($('<option>', {
-    value: source.id.replace(":", ""),
-    text: source.name
-  }));
-  $('select option[value="' + source.id.replace(":", "") + '"]').attr('data-img-src', source.thumbnail.toDataURL());
-  
-}
-
-function showSources() {
-  desktopCapturer.getSources({ types:['window', 'screen'] }).then(async sources => {
-    for (let source of sources) {
-      console.log("Name: " + source.name);
-      addSource(source);
-    }
+// Get the available video sources
+async function getVideoSources() {
+  const inputSources = await desktopCapturer.getSources({
+    types: ['window', 'screen']
   });
+
+  const videoOptionsMenu = Menu.buildFromTemplate(
+    inputSources.map(source => {
+      return {
+        label: source.name,
+        click: () => selectSource(source),
+        
+      };
+    })
+  );
+
+
+  videoOptionsMenu.popup();
 }
 
-function toggle() {
-  if (!desktopSharing) {
-    var id = ($('select').val()).replace(/window|screen/g, function(match) { return match + ":"; });
-    onAccessApproved(id);
-  } else {
-    desktopSharing = false;
+// Change the videoSource window to record
+async function selectSource(source) {
 
-    if (localStream)
-      localStream.getTracks()[0].stop();
-    localStream = null;
+  videoSelectBtn.innerText = source.name;
 
-    document.getElementById('button-start-stop')
-
-    $('select').showSources();
-    
-    
-  }
-}
-
-function onAccessApproved(desktop_id) {
-  if (!desktop_id) {
-    console.log('Desktop Capture access rejected.');
-    return;
-  }
-  desktopSharing = true;
-  document.getElementById('button-start-stop')
-  console.log("Desktop sharing started.. desktop_id:" + desktop_id);
-  navigator.webkitGetUserMedia({
+  const constraints = {
     audio: false,
     video: {
       mandatory: {
         chromeMediaSource: 'desktop',
-        chromeMediaSourceId: desktop_id,
-        minWidth: 1280,
-        maxWidth: 1280,
-        minHeight: 720,
-        maxHeight: 720
+        chromeMediaSourceId: source.id
       }
     }
-  }, gotStream, getUserMediaError);
+  };
 
-  function gotStream(stream) {
-    localStream = stream;
-    let video = document.getElementById('screen');
-    video.srcObject = stream;
-    video.onloadedmetadata = (e) => video.play();
-    stream.onended = function() {
-      if (desktopSharing) {
-        toggle();
-      }
-    };
-  }
+  // Create a Stream
+  const stream = await navigator.mediaDevices
+    .getUserMedia(constraints);
 
-  function getUserMediaError(e) {
-    console.log('getUserMediaError: ' + JSON.stringify(e, null, '---'));
-  }
-}
-
-$(document).ready(function() {
-  showSources();
-
-});
-
-document.getElementById('button-start-stop').addEventListener('click', function(e) {
-  toggle();
-});
-
-
-
-function getCamera() {
+  // Preview the source in a video element
+  videoElement.srcObject = stream;
+  videoElement.play();
   
-  var camera = navigator.mediaDevices.getUserMedia({video: true})
-.then(function(stream){
+  document.getElementById('stopVideoSelectBtn').addEventListener('click', () => {
 
-  document.getElementById('camera').srcObject = stream;
+    stream.getTracks()[0].stop()  
+    currentWindow.reload();
+ 
+    
 
-}).catch(function(error) {
+  })
+  
 
-  console.log(error);
+  // Create the Media Recorder
+  const options = { mimeType: 'video/webm; codecs=vp9' };
+  mediaRecorder = new MediaRecorder(stream, options);
 
-})
+  // Register Event Handlers
+  mediaRecorder.ondataavailable = handleDataAvailable;
+  mediaRecorder.onstop = handleStop;
+
+  // Updates the UI
 
 }
 
-document.getElementById('start-camera').addEventListener('click' , function() {
+// Captures all recorded chunks
+function handleDataAvailable(e) {
+  console.log('video data available');
+  recordedChunks.push(e.data);
+}
 
-  getCamera()
+// Saves the video file on stop
+async function handleStop(e) {
+  const blob = new Blob(recordedChunks, {
+    type: 'video/webm; codecs=vp9'
+  });
 
-})
+  const buffer = Buffer.from(await blob.arrayBuffer());
+
+  const { filePath } = await dialog.showSaveDialog({
+    buttonLabel: 'Save video',
+    defaultPath: `vid-${Date.now()}.mp4`
+  });
+
+  if (filePath) {
+    writeFile(filePath, buffer, () => console.log('video saved successfully!'));
+  }
+
+}
+
 
 
