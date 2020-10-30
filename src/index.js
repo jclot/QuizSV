@@ -4,7 +4,7 @@ const path = require('path');
 const fs = require('fs')
 require('update-electron-app')({
   repo: 'https://github.com/jclot/QuizSV',
-  // updateInterval: '1 minute',
+  updateInterval: '1 hour',
 })
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
