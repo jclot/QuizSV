@@ -113,7 +113,7 @@ async function handleStop(e) {
 
   const { filePath } = await dialog.showSaveDialog({
     buttonLabel: 'Save video',
-    defaultPath: `vid-${Date.now()}.mp4`
+    defaultPath: `vid-${Date.now()}.webm`
   });
 
   if (filePath) {
