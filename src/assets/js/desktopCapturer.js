@@ -1,13 +1,12 @@
 const { desktopCapturer, remote } = require('electron');
-
 const { writeFile } = require('fs');
-
 const { dialog, Menu } = remote;
 
 // Global state
 let mediaRecorder; // MediaRecorder instance to capture footage
 const recordedChunks = [];
 const currentWindow = remote.getCurrentWindow();
+
 
 // Buttons
 const videoElement = document.getElementById('screen');
@@ -62,7 +61,7 @@ async function selectSource(source) {
     video: {
       mandatory: {
         chromeMediaSource: 'desktop',
-        chromeMediaSourceId: source.id
+        chromeMediaSourceId: source.id,
       }
     }
   };
