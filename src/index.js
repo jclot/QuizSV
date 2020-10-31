@@ -1,11 +1,11 @@
 const { create } = require('domain');
 const { app, BrowserWindow, Tray, Menu, MenuItem } = require('electron');
 const path = require('path');
-const fs = require('fs')
-require('update-electron-app')({
-  repo: 'https://github.com/jclot/QuizSV',
-  updateInterval: '1 hour',
-})
+
+// require('update-electron-app')({
+//   repo: 'https://github.com/jclot/QuizSV',
+//   updateInterval: '1 hour',
+// })
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) { // eslint-disable-line global-require
@@ -96,13 +96,6 @@ const template = [
     },
 ]
 
-const fileSaveTest = () => {
-
-  try {fs.writeFileSync('myfile.txt', 'The text Of my file', 'utf-8'); }
-  catch(e) { alert('Failed to save the file'); }
-
-
-}
 
 const menu = Menu.buildFromTemplate(template)
 Menu.setApplicationMenu(menu)
@@ -157,7 +150,6 @@ function createWindow() {
 app.on('ready', () => {
 
     createWindow()
-    // fileSaveTest()
 
 });
 
