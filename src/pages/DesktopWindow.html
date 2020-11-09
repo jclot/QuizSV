@@ -12,6 +12,7 @@
     <!-- <link rel="stylesheet" href="../dist/css/image-picker.css"> -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="../dist/css/dragable.css">
+    <link rel="stylesheet" href="../dist/css/modal.css">
 </head>
 <div class="dragable">
 </div>
@@ -29,13 +30,28 @@
                                 <a class="button button-primary" id="videoSelectBtn" >Choose The Screen</a>
                                 <a class="button button-primary" id="stopVideoSelectBtn" >Stop Screen</a>
                             </div>
+                            <div class="video-screen" id="myBtn">
+                            <a href="#"><video width="560" height="340" autoplay id="screen" ></video></a>
+                            </div>
                             
-                            <video width="560" height="340" autoplay id="screen" ></video>
+                            <!-- Modal -->
+                            <div id="myModal" class="modal">
+
+                                <!-- Modal content -->
+                                <div class="modal-content">
+                                  <span class="close">&times;</span>
+                                  <p>Some text in the Modal..</p>
+                                </div>
+                              
+                              </div>
+
                             <div class="hero-cta-tac">
                                 
                     
                                 <a class="button button-primary" id="startBtn" >Start Recording</a>
                                 <a class="button button-primary" id="stopBtn" >Stop Recording</a>
+                                <!-- <a class="button button-primary" id="minimizeBtn" >Minimize Window</a> -->
+                                <!-- <a class="button button-primary" onclick="createFile()" >Test</a> -->
                                 
             
                                 
@@ -71,6 +87,35 @@
     <script src="../dist/js/jquery.js"></script>
     <script src="../assets/js/desktopCapturer.js"></script>
     <!-- <script src="../assets/js/image-picker.min.js"></script> -->
-    <script src="../assets/js/createInfoFile.js"></script>
+    <!-- <script src="../assets/js/createInfoFile.js"></script> -->
+
+    <script>
+        // Get the modal
+        var modal = document.getElementById("myModal");
+        
+        // Get the button that opens the modal
+        var btn = document.getElementById("myBtn");
+        
+        // Get the <span> element that closes the modal
+        var span = document.getElementsByClassName("close")[0];
+        
+        // When the user clicks the button, open the modal 
+        btn.onclick = function() {
+          modal.style.display = "block";
+        }
+        
+        // When the user clicks on <span> (x), close the modal
+        span.onclick = function() {
+          modal.style.display = "none";
+        }
+        
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+          if (event.target == modal) {
+            modal.style.display = "none";
+          }
+        }
+        </script>
+
 </body>
 </html>

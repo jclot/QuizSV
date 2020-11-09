@@ -2,29 +2,62 @@ const { desktopCapturer, remote } = require('electron');
 const { writeFile } = require('fs');
 const { dialog, Menu } = remote;
 
+const {spawn} = require('child_process');
+const minimize = () => {
+
+  remote.getCurrentWindow().minimize();
+
+} 
+
 // Global state
 let mediaRecorder; // MediaRecorder instance to capture footage
 const recordedChunks = [];
 const currentWindow = remote.getCurrentWindow();
+const python = spawn('python', ['../py/AppRunning.py']);
 
 
 // Buttons
 const videoElement = document.getElementById('screen');
+
+function pyFile() {
+
+  python.stdout.on('data', function (data) {
+    console.log('Pipe data from python script ...');
+    console.log(data)
+   });
+
+   python.on('close', function (code) {
+    console.log(`child process close all stdio with code ${code}`);
+   
+    });
+
+}
 
 const startBtn = document.getElementById('startBtn');
 startBtn.onclick = e => {
   mediaRecorder.start();
   startBtn.classList.add('is-danger');
   startBtn.innerText = 'Recording...';
+  minimize()
+  
 };
 
 const stopBtn = document.getElementById('stopBtn');
 
 stopBtn.onclick = e => {
+ 
   mediaRecorder.stop();
   startBtn.classList.remove('is-danger');
   startBtn.innerText = 'Start';
 };
+
+// const minimizeBtn = document.getElementById('minimizeBtn')
+
+// minimizeBtn.onclick = e => {
+
+//   minimize();
+
+// }
 
 
 
@@ -51,31 +84,53 @@ async function getVideoSources() {
   videoOptionsMenu.popup();
 }
 
+const screenSetting = Object.assign({
+
+  frameRate: 100, 
+  width: screen.availWidth,
+  height: screen.availHeight,
+
+})
+
 // Change the videoSource window to record
 async function selectSource(source) {
 
   videoSelectBtn.innerText = source.name;
 
-  const constraints = {
+  const constraintsVideo = {
     audio: false,
     video: {
       mandatory: {
         chromeMediaSource: 'desktop',
         chromeMediaSourceId: source.id,
+        maxFrameRate: screenSetting.frameRate,
+        maxHeight: screenSetting.height,
+        maxWidth: screenSetting.width,
       }
     }
   };
 
+  const constraintsAudio = {
+
+    audio: true
+
+  }
+
   // Create a Stream
-  const stream = await navigator.mediaDevices
-    .getUserMedia(constraints);
+  const streamScreen = await navigator.mediaDevices.getUserMedia(constraintsVideo);
+  const streamAudio = await navigator.mediaDevices.getUserMedia(constraintsAudio);
+
+  const stream = new MediaStream([...streamScreen.getVideoTracks(), ...streamAudio.getAudioTracks()])
 
   // Preview the source in a video element
   videoElement.srcObject = stream;
+  videoElement.muted = true;
   videoElement.play();
   
   document.getElementById('stopVideoSelectBtn').addEventListener('click', () => {
 
+
+    pyFile();
     stream.getTracks()[0].stop()  
     currentWindow.reload();
  

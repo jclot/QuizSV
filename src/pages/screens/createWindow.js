@@ -15,9 +15,9 @@ const createWindowInstructions = () => {
      InstructionsScreen = new BrowserWindow({
         titleBarStyle: 'hidden',
         width: 800,
-        height: 600,
+        height: 700,
         maxWidth: 800,
-        maxHeight: 600,
+        maxHeight: 700,
         webPreferences: {
             nodeIntegration: true,
             enableRemoteModule: true,

@@ -1,21 +1,15 @@
 
 // const {spawn} = require('child_process');
-
-const { exec } = require('child_process');
-const { error } = require('console');
-const { stderr } = require('process');
+// const { writeFile } = require('fs');
 
 
-// function createFile() {
 
-
-// var largeDataSet = [];
 //  // spawn new child process to call the python script
 //  const python = spawn('python', ['../py/AppRunning.py']);
 //  // collect data from script
 //  python.stdout.on('data', function (data) {
 //   console.log('Pipe data from python script ...');
-//   largeDataSet.push(data);
+//   console.log(data)
 //  });
 
  
@@ -25,24 +19,4 @@ const { stderr } = require('process');
 
 //  });
  
-
-
-// }
-
-// createFile();
-
-const execFile = require('child_process').execFile;
-
-execFile('python', ['./AppRunning.py'], (error, stdout, stderr) => {
-
-  if(error) {
-
-    console.error('stderr', stderr);
-    throw error;
-  }
-
-  console.log('stdout', stdout)
-
-});
-
 
