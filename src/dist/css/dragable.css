@@ -16,3 +16,51 @@
 
 }
 
+.settings-title {
+
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+
+
+}
+
+.range-slider-container {
+
+    width: 200px;
+    
+
+
+}
+
+.select-range-container {
+
+    margin-top: 20px;
+    margin-bottom: 50px;
+
+
+}
+
+select {
+
+    border-color: #0075FF;
+    border-radius: 7px;
+    border-width: 2px;
+    background-color: #0075FF;
+    color: white;
+    width: 200px;
+    text-align: center;
+    font-size: 16px;
+    
+
+}
+
+.button-done-settigns, .button-done-settigns:hover {
+
+    background-color: #0075FF;
+
+
+
+}
+
+
+

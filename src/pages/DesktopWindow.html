@@ -38,9 +38,24 @@
                             <div id="myModal" class="modal">
 
                                 <!-- Modal content -->
-                                <div class="modal-content">
+                                <div class="modal-content modal-width" >
                                   <span class="close">&times;</span>
-                                  <p>Some text in the Modal..</p>
+                                  <h1 class="settings-title">Settings</h1>
+                                  <hr>
+                                  <h4>Audio:</h4>
+                                  <input type="range" min="1" max="100" value="50" class="range-slider-container">
+                                  <hr>
+                                  <h4>Video Settings:</h4>
+                                  <div class="select-range-container">
+                                  <select>
+                                    <option value="0">Select Quality</option>
+                                    <option value="1">Low</option>
+                                    <option value="2">Medium</option>
+                                    <option value="3">High</option>
+                                    <option value="4">Ultra</option>
+                                  </select>
+                                </div>
+                                <a class="button button-primary button-done-settigns" id="done" >Done</a>
                                 </div>
                               
                               </div>
@@ -115,6 +130,8 @@
             modal.style.display = "none";
           }
         }
+
+
         </script>
 
 </body>
