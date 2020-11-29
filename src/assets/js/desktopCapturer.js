@@ -3,11 +3,13 @@ const { writeFile } = require('fs');
 const { dialog, Menu } = remote;
 
 const {spawn} = require('child_process');
+
 const minimize = () => {
 
   remote.getCurrentWindow().minimize();
 
 } 
+
 
 // Global state
 let mediaRecorder; // MediaRecorder instance to capture footage
@@ -18,6 +20,11 @@ const python = spawn('python', ['../py/AppRunning.py']);
 
 // Buttons
 const videoElement = document.getElementById('screen');
+
+  
+  
+  
+  
 
 function pyFile() {
 
@@ -34,13 +41,14 @@ function pyFile() {
 }
 
 const startBtn = document.getElementById('startBtn');
-startBtn.onclick = e => {
+startBtn.onclick = () => {
   mediaRecorder.start();
   startBtn.classList.add('is-danger');
   startBtn.innerText = 'Recording...';
   minimize()
   
 };
+
 
 const stopBtn = document.getElementById('stopBtn');
 

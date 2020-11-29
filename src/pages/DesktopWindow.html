@@ -13,6 +13,8 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="../dist/css/dragable.css">
     <link rel="stylesheet" href="../dist/css/modal.css">
+
+    
 </head>
 <div class="dragable">
 </div>
@@ -34,37 +36,13 @@
                             <a href="#"><video width="560" height="340" autoplay id="screen" ></video></a>
                             </div>
                             
-                            <!-- Modal -->
-                            <div id="myModal" class="modal">
-
-                                <!-- Modal content -->
-                                <div class="modal-content modal-width" >
-                                  <span class="close">&times;</span>
-                                  <h1 class="settings-title">Settings</h1>
-                                  <hr>
-                                  <h4>Audio:</h4>
-                                  <input type="range" min="1" max="100" value="50" class="range-slider-container">
-                                  <hr>
-                                  <h4>Video Settings:</h4>
-                                  <div class="select-range-container">
-                                  <select>
-                                    <option value="0">Select Quality</option>
-                                    <option value="1">Low</option>
-                                    <option value="2">Medium</option>
-                                    <option value="3">High</option>
-                                    <option value="4">Ultra</option>
-                                  </select>
-                                </div>
-                                <a class="button button-primary button-done-settigns" id="done" >Done</a>
-                                </div>
-                              
-                              </div>
 
                             <div class="hero-cta-tac">
                                 
                     
                                 <a class="button button-primary" id="startBtn" >Start Recording</a>
                                 <a class="button button-primary" id="stopBtn" >Stop Recording</a>
+                                <a class="button button-primary" id="extensionFile" onclick="getVideoExtension()" >Choose the extension file</a>
                                 <!-- <a class="button button-primary" id="minimizeBtn" >Minimize Window</a> -->
                                 <!-- <a class="button button-primary" onclick="createFile()" >Test</a> -->
                                 
