@@ -17,15 +17,26 @@ const recordedChunks = [];
 const currentWindow = remote.getCurrentWindow();
 const python = spawn('python', ['../py/AppRunning.py']);
 
+const extensionSelectBtn = document.getElementById('extensionFile')
+extensionSelectBtn.onclick = getExtensionSources;
+
 
 // Buttons
 const videoElement = document.getElementById('screen');
 
+let path;
   
+const extensionFile = [
   
-  
-  
+  "mp4",
+  "avi",
+  "mov",
+  "webm",
+  "none"
 
+];
+  
+  
 function pyFile() {
 
   python.stdout.on('data', function (data) {
@@ -41,11 +52,14 @@ function pyFile() {
 }
 
 const startBtn = document.getElementById('startBtn');
+
 startBtn.onclick = () => {
+
   mediaRecorder.start();
   startBtn.classList.add('is-danger');
   startBtn.innerText = 'Recording...';
   minimize()
+
   
 };
 
@@ -66,8 +80,6 @@ stopBtn.onclick = e => {
 //   minimize();
 
 // }
-
-
 
 const videoSelectBtn = document.getElementById('videoSelectBtn');
 videoSelectBtn.onclick = getVideoSources;
@@ -165,8 +177,40 @@ function handleDataAvailable(e) {
   recordedChunks.push(e.data);
 }
 
+function selectExtension(values) {
+  
+  extensionSelectBtn.innerText = values
+
+  if(values === 'none') {
+
+    return path = `untilted`;
+
+  } else {
+
+    return path = `vid-${Date.now()}.${values}`;
+  
+  }
+}
+function getExtensionSources() {
+
+
+const videoExtensionMenu = Menu.buildFromTemplate(
+  extensionFile.map(values => {
+    return {
+      label: values,   
+      click: () => selectExtension(values)
+      
+      
+    };
+  })
+)
+
+videoExtensionMenu.popup();
+
+}
+
 // Saves the video file on stop
-async function handleStop(e) {
+async function handleStop() {
   const blob = new Blob(recordedChunks, {
     type: 'video/webm; codecs=vp9'
   });
@@ -175,7 +219,8 @@ async function handleStop(e) {
 
   const { filePath } = await dialog.showSaveDialog({
     buttonLabel: 'Save video',
-    defaultPath: `vid-${Date.now()}.webm`
+    defaultPath: path
+
   });
 
   if (filePath) {
@@ -184,5 +229,6 @@ async function handleStop(e) {
 
 }
 
+// `vid-${Date.now()}.webm`
 
 
