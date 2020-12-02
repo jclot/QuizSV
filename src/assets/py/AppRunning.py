@@ -43,8 +43,6 @@ def is_running_os(app):
 
 def is_creating_os():
 
-	with open( desktop + '/' + username + '.txt', 'w') as f:
-
 		sys.stdout = f
 
 		print(' ')
@@ -92,16 +90,4 @@ def is_creating_os():
 		sys.stdout = original_stdout
 
 
-if type_of_operating_system == "Darwin":
-
-	print('OS')
-	is_creating_os()
-
-elif type_of_operating_system == "Windows":
-
-	print('Windows')
-
-elif type_of_operating_system == "Linux":
-
-	print('Linux')
-
+is_creating_os()
