@@ -30,9 +30,13 @@ var mediaRecorder; // MediaRecorder instance to capture footage
 
 var recordedChunks = [];
 var currentWindow = remote.getCurrentWindow();
-var python = spawn('python', ['../py/AppRunning.py']); // Buttons
+var python = spawn('python', ['../py/AppRunning.py']);
+var extensionSelectBtn = document.getElementById('extensionFile');
+extensionSelectBtn.onclick = getExtensionSources; // Buttons
 
 var videoElement = document.getElementById('screen');
+var path;
+var extensionFile = ["mp4", "avi", "mov", "webm", "none"];
 
 function pyFile() {
   python.stdout.on('data', function (data) {
@@ -46,7 +50,7 @@ function pyFile() {
 
 var startBtn = document.getElementById('startBtn');
 
-startBtn.onclick = function (e) {
+startBtn.onclick = function () {
   mediaRecorder.start();
   startBtn.classList.add('is-danger');
   startBtn.innerText = 'Recording...';
@@ -169,10 +173,32 @@ function selectSource(source) {
 function handleDataAvailable(e) {
   console.log('video data available');
   recordedChunks.push(e.data);
+}
+
+function selectExtension(values) {
+  extensionSelectBtn.innerText = values;
+
+  if (values === 'none') {
+    return path = "untilted";
+  } else {
+    return path = "vid-".concat(Date.now(), ".").concat(values);
+  }
+}
+
+function getExtensionSources() {
+  var videoExtensionMenu = Menu.buildFromTemplate(extensionFile.map(function (values) {
+    return {
+      label: values,
+      click: function click() {
+        return selectExtension(values);
+      }
+    };
+  }));
+  videoExtensionMenu.popup();
 } // Saves the video file on stop
 
 
-function handleStop(e) {
+function handleStop() {
   var blob, buffer, _ref, filePath;
 
   return regeneratorRuntime.async(function handleStop$(_context3) {
@@ -192,7 +218,7 @@ function handleStop(e) {
           _context3.next = 8;
           return regeneratorRuntime.awrap(dialog.showSaveDialog({
             buttonLabel: 'Save video',
-            defaultPath: "vid-".concat(Date.now(), ".webm")
+            defaultPath: path
           }));
 
         case 8:
@@ -211,4 +237,4 @@ function handleStop(e) {
       }
     }
   });
-}
+} // `vid-${Date.now()}.webm`
