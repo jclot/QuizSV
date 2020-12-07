@@ -10,19 +10,13 @@ var plataform_os = os.platform();
 var dir_home = process.env [process.platform == "win32"?"USERPROFILE":"HOME"];
 var dir_desktop = path.join(dir_home, "Desktop");
 var admin_user = os.userInfo().username;
+var user_data = []
 
-function get_app_procces(app) {
+function get_app_procces() {
 
  
 
 }
-
-function file_content() {
-
-  
-
-}
-
 
 function info_file() {
 
@@ -67,4 +61,4 @@ if(plataform_os === "darwin") {
 
 }
 
-// info_file();
+info_file();
