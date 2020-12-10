@@ -2,8 +2,6 @@ const { desktopCapturer, remote } = require('electron');
 const { writeFile } = require('fs');
 const { dialog, Menu } = remote;
 
-const {spawn} = require('child_process');
-
 const minimize = () => {
 
   remote.getCurrentWindow().minimize();
@@ -15,15 +13,12 @@ const minimize = () => {
 let mediaRecorder; // MediaRecorder instance to capture footage
 const recordedChunks = [];
 const currentWindow = remote.getCurrentWindow();
-const python = spawn('python', ['../py/AppRunning.py']);
 
 const extensionSelectBtn = document.getElementById('extensionFile')
 extensionSelectBtn.onclick = getExtensionSources;
 
-
 // Buttons
 const videoElement = document.getElementById('screen');
-
 let path;
   
 const extensionFile = [
@@ -35,21 +30,7 @@ const extensionFile = [
   "none"
 
 ];
-  
-  
-function pyFile() {
 
-  python.stdout.on('data', function (data) {
-    console.log('Pipe data from python script ...');
-    console.log(data)
-   });
-
-   python.on('close', function (code) {
-    console.log(`child process close all stdio with code ${code}`);
-   
-    });
-
-}
 
 const startBtn = document.getElementById('startBtn');
 
@@ -150,7 +131,6 @@ async function selectSource(source) {
   document.getElementById('stopVideoSelectBtn').addEventListener('click', () => {
 
 
-    pyFile();
     stream.getTracks()[0].stop()  
     currentWindow.reload();
  
@@ -228,7 +208,4 @@ async function handleStop() {
   }
 
 }
-
-// `vid-${Date.now()}.webm`
-
 
