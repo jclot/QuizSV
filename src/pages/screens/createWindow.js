@@ -3,12 +3,11 @@ const BrowserWindow = electron.remote.BrowserWindow;
 
 
 
-var button = document.getElementById("createW");
+const button = document.getElementById("createW");
 
-const path = require('path');
+const path_file = require('path');
 
 let InstructionsScreen;
-let splash;
 
 const createWindowInstructions = () => {
     // Create the browser window.
@@ -30,7 +29,7 @@ const createWindowInstructions = () => {
     });
 
 
-    InstructionsScreen.loadFile(path.join(__dirname, 'pages/Instructions.html'));
+    InstructionsScreen.loadFile(path_file.join(__dirname, 'pages/Instructions.html'));
 
 };
 
