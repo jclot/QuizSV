@@ -1,7 +1,7 @@
 const { create } = require('domain');
 const { app, BrowserWindow, Tray, Menu, MenuItem } = require('electron');
 const { platform } = require('os');
-const path = require('path');
+const path_join = require('path');
 
 // require('update-electron-app')({
 //   repo: 'https://github.com/jclot/QuizSV',
@@ -150,8 +150,8 @@ function createWindow() {
     }
 
     splash = new BrowserWindow({ width: 610, height: 410, maxWidth: 610, maxHeight: 410, frame: false, minHeight: 410, minWidth: 610 })
-    splash.loadFile(path.join(__dirname, 'pages/Loader.html'))
-    mainWindow.loadFile(path.join(__dirname, 'index.html'));
+    splash.loadFile(path_join.join(__dirname, 'pages/Loader.html'))
+    mainWindow.loadFile(path_join.join(__dirname, 'index.html'));
     mainWindow.setMenuBarVisibility(null);
 
     mainWindow.once('ready-to-show', async() => {
