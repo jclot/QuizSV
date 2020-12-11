@@ -1,9 +1,5 @@
-const { Menu } = require('electron');
 const electron = require('electron');
 const BrowserWindow = electron.remote.BrowserWindow;
-const { platform } = require('os');
-
-
 
 const button = document.getElementById("createW");
 
