@@ -1,5 +1,5 @@
 const { desktopCapturer, remote } = require('electron');
-const { writeFile } = require('fs');
+const { writeFile, existsSync} = require('fs');
 const { dialog, Menu } = remote;
 
 const minimize = () => {
@@ -30,6 +30,8 @@ const extensionFile = [
   "none"
 
 ];
+
+const path_find = ['/Applications/Google Chrome.app', '/Downloads/Google Chrome.app', '/Desktop/Google Chrome.app'];
 
 
 const startBtn = document.getElementById('startBtn');
@@ -168,14 +170,15 @@ function selectExtension(values) {
   } else {
 
     return path = `vid-${Date.now()}.${values}`;
-  
+
   }
+
 }
 function getExtensionSources() {
 
+    const videoExtensionMenu = Menu.buildFromTemplate(
 
-const videoExtensionMenu = Menu.buildFromTemplate(
-  extensionFile.map(values => {
+    extensionFile.map(values => {
     return {
       label: values,   
       click: () => selectExtension(values)
