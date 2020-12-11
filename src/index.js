@@ -1,5 +1,6 @@
 const { create } = require('domain');
 const { app, BrowserWindow, Tray, Menu, MenuItem } = require('electron');
+const { platform } = require('os');
 const path = require('path');
 
 // require('update-electron-app')({
@@ -108,22 +109,45 @@ let splash;
 let mainWindow;
 
 function createWindow() {
-    // Create the browser window.
-    mainWindow = new BrowserWindow({
-        titleBarStyle: 'hidden',
-        width: 1200,
-        height: 900,
-        maxWidth: 1200,
-        maxHeight: 900,
-        webPreferences: {
-            nodeIntegration: true,
-            enableRemoteModule: true,
-        },
-        fullscreen: false,
-        backgroundColor: "#fff",
-        show: false
 
-    });
+    if (process.platform === "darwin") {
+
+        // Create the browser window.
+        mainWindow = new BrowserWindow({
+            titleBarStyle: 'hidden',
+            width: 1200,
+            height: 900,
+            maxWidth: 1200,
+            maxHeight: 900,
+            webPreferences: {
+                nodeIntegration: true,
+                enableRemoteModule: true,
+            },
+            fullscreen: false,
+            backgroundColor: "#fff",
+            show: false
+
+        });
+
+    } else if (process.platform === "win32") {
+
+        mainWindow = new BrowserWindow({
+            titleBarStyle: 'hidden',
+            width: 1700,
+            height: 1000,
+            maxWidth: 1700,
+            maxHeight: 1000,
+            webPreferences: {
+                nodeIntegration: true,
+                enableRemoteModule: true,
+            },
+            fullscreen: false,
+            backgroundColor: "#fff",
+            show: false
+
+        });
+
+    }
 
     splash = new BrowserWindow({ width: 610, height: 410, maxWidth: 610, maxHeight: 410, frame: false, minHeight: 410, minWidth: 610 })
     splash.loadFile(path.join(__dirname, 'pages/Loader.html'))
