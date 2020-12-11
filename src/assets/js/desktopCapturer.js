@@ -2,13 +2,6 @@ const { desktopCapturer, remote } = require('electron');
 const { writeFile, existsSync} = require('fs');
 const { dialog, Menu } = remote;
 
-const minimize = () => {
-
-  remote.getCurrentWindow().minimize();
-
-} 
-
-
 // Global state
 let mediaRecorder; // MediaRecorder instance to capture footage
 const recordedChunks = [];
@@ -31,7 +24,13 @@ const extensionFile = [
 
 ];
 
-const path_find = ['/Applications/Google Chrome.app', '/Downloads/Google Chrome.app', '/Desktop/Google Chrome.app'];
+const path_find = [
+  
+  '/Applications/Google Chrome.app', 
+  '/Downloads/Google Chrome.app', 
+  '/Desktop/Google Chrome.app'
+
+];
 
 
 const startBtn = document.getElementById('startBtn');
@@ -41,7 +40,7 @@ startBtn.onclick = () => {
   mediaRecorder.start();
   startBtn.classList.add('is-danger');
   startBtn.innerText = 'Recording...';
-  minimize()
+  remote.getCurrentWindow().minimize();
 
   
 };
@@ -56,13 +55,6 @@ stopBtn.onclick = e => {
   startBtn.innerText = 'Start';
 };
 
-// const minimizeBtn = document.getElementById('minimizeBtn')
-
-// minimizeBtn.onclick = e => {
-
-//   minimize();
-
-// }
 
 const videoSelectBtn = document.getElementById('videoSelectBtn');
 videoSelectBtn.onclick = getVideoSources;

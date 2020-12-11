@@ -1,11 +1,11 @@
-var os = require("os");
+var { userInfo } = require("os");
 var fs = require("fs");
-var path_generate = require("path");
+var { join } = require("path");
 var find = require('find-process');
 
 var dir_home = process.env [process.platform == "win32"?"USERPROFILE":"HOME"];
-var dir_desktop = path_generate.join(dir_home, "Desktop");
-var admin_user = os.userInfo().username;
+var dir_desktop =  join(dir_home, "Desktop");
+var admin_user = userInfo().username;
 var arr = ['Google Chrome', 'Safari', 'Spotify', 'WhatsApp Desktop'];
 
 let result;
@@ -41,7 +41,7 @@ function get_app_procces() {
 
             true_false(list)
 
-             fs.writeFile(dir_desktop + '/' + admin_user + '.txt',  Encrypt(safari + result ), function(err) {
+                fs.writeFile(dir_desktop + '/' + admin_user + '.txt',  Encrypt(safari + result ), function(err) {
               if(err) {
                   console.log(err);
               } else {
@@ -55,7 +55,7 @@ function get_app_procces() {
 
             true_false(list)
 
-             fs.appendFile(dir_desktop + '/' + admin_user + '.txt', Encrypt(google_chrome + result), function(err) {
+                fs.appendFile(dir_desktop + '/' + admin_user + '.txt', Encrypt(google_chrome + result), function(err) {
               if(err) {
                   console.log(err);
               } else {
@@ -69,7 +69,7 @@ function get_app_procces() {
 
             true_false(list)
 
-             fs.appendFile(dir_desktop + '/' + admin_user + '.txt', Encrypt(spotify + result), function(err){
+                fs.appendFile(dir_desktop + '/' + admin_user + '.txt', Encrypt(spotify + result), function(err){
               if(err) {
                   console.log(err);
               } else {
@@ -83,7 +83,7 @@ function get_app_procces() {
 
            true_false(list)
 
-            fs.appendFile(dir_desktop + '/' + admin_user + '.txt',  Encrypt(whatsapp_desktop + result), function(err){
+                fs.appendFile(dir_desktop + '/' + admin_user + '.txt',  Encrypt(whatsapp_desktop + result), function(err){
               if(err) {
                   console.log(err);
               } else {

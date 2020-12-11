@@ -1,5 +1,4 @@
-const { desktopCapturer, remote } = require('electron');
-const { platform } = require('os');
+const { remote } = require('electron');
 const dragable = document.getElementById('dragable');
 
 const backButton = document.getElementById('backInstructionsButton');

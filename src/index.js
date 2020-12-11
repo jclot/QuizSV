@@ -1,6 +1,4 @@
-const { create } = require('domain');
-const { app, BrowserWindow, Tray, Menu, MenuItem } = require('electron');
-const { platform } = require('os');
+const { app, BrowserWindow, Menu } = require('electron');
 const path_join = require('path');
 
 // require('update-electron-app')({
