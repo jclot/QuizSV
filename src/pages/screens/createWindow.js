@@ -19,8 +19,14 @@ const createWindowInstructions = () => {
             maxWidth: 800,
             maxHeight: 700,
             webPreferences: {
-                nodeIntegration: true,
-                enableRemoteModule: true,
+                nodeIntegration: false,
+                enableRemoteModule: false,
+                disableBlinkFeatures: "Auxclick",
+                nodeIntegrationInSubFrames: false,
+                nodeIntegrationInWorker: false,
+                allowRunningInsecureContent: false,
+                contextIsolation: true,
+                sandbox: true
             },
             fullscreen: false,
             backgroundColor: "#fff",
@@ -35,8 +41,15 @@ const createWindowInstructions = () => {
             maxWidth: 670,
             maxHeight: 760,
             webPreferences: {
-                nodeIntegration: true,
-                enableRemoteModule: true,
+                nodeIntegration: false,
+                enableRemoteModule: false,
+                disableBlinkFeatures: "Auxclick",
+                nodeIntegrationInSubFrames: false,
+                nodeIntegrationInWorker: false,
+                allowRunningInsecureContent: false,
+                contextIsolation: true,
+                sandbox: true
+
             },
             fullscreen: false,
             backgroundColor: "#fff",
