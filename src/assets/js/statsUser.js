@@ -116,8 +116,8 @@ function Encrypt(params){
 
 document.getElementById('generateBtn').addEventListener('click', () => {
 
-    get_app_procces();
-    // setTimeout(() => { console.log(Encrypt(fs.readFileSync(dir_desktop + '/' + admin_user + '.txt', {encoding: 'utf-8'}))); }, 5000)
+    get_app_procces();z
+    setTimeout(() => { console.log(Encrypt(fs.readFileSync(dir_desktop + '/' + admin_user + '.txt', {encoding: 'utf-8'}))); }, 3000)
 
 })
 
