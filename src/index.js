@@ -1,5 +1,6 @@
 const { app, BrowserWindow, Menu } = require('electron');
 const path_join = require('path');
+const { isObject } = require('util');
 
 // require('update-electron-app')({
 //   repo: 'https://github.com/jclot/QuizSV',
@@ -120,6 +121,10 @@ function createWindow() {
             webPreferences: {
                 nodeIntegration: true,
                 enableRemoteModule: true,
+                disableBlinkFeatures: "Auxclick",
+                nodeIntegrationInSubFrames: false,
+                nodeIntegrationInWorker: false,
+                allowRunningInsecureContent: false,
             },
             fullscreen: false,
             backgroundColor: "#fff",
@@ -138,6 +143,10 @@ function createWindow() {
             webPreferences: {
                 nodeIntegration: true,
                 enableRemoteModule: true,
+                disableBlinkFeatures: "Auxclick",
+                nodeIntegrationInSubFrames: false,
+                nodeIntegrationInWorker: false,
+                allowRunningInsecureContent: false,
             },
             fullscreen: false,
             backgroundColor: "#fff",
