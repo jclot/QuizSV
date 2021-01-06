@@ -13,6 +13,8 @@ if (require('electron-squirrel-startup')) { // eslint-disable-line global-requir
 }
 
 const isMac = process.platform === 'darwin'
+const isWindows = process.platform === 'win32'
+
 
 const template = [
     // { role: 'appMenu' }
