@@ -13,7 +13,8 @@ extensionSelectBtn.onclick = getExtensionSources;
 // Buttons
 const videoElement = document.getElementById('screen');
 let path;
-  
+let check_extension = false;
+let check_screen_choosed = false;
 const extensionFile = [
   
   "mp4",
@@ -29,22 +30,66 @@ const path_find = [
   '/Applications/Google Chrome.app', 
   '/Downloads/Google Chrome.app', 
   '/Desktop/Google Chrome.app'
-
 ];
+
+const options_alert_choose_extension = {
+	    type: 'question',
+	    buttons: ['Ok, am going to choose a extension', 'No, thanks'],
+	    defaultId: 0,
+	    title: 'Choose an extension',
+	    message: 'Please choose one of our extensions',
+	    detail: 'It automatically helps you to select an extension and not have problems with that, if you do not want to put one of our default extensions, insert it yourself later when saving the file, the available extensions are: mov, web, mp4',
+	  };
+
+
+const options_alert_choose_extension_obligatory = {
+
+	    type: 'question',
+	    buttons: ['Ok, am going to choose a extension '],
+	    defaultId: 0,
+	    title: 'Choose an extension',
+	    message: 'Please choose one of our extensions',
+	    detail: 'It automatically helps you to select an extension and not have problems with that.',
+}
+
+const options_alert_choose_screen_obligatory_perm = {
+
+	    type: 'question',
+	    buttons: ['Ok, am going to choose a screen '],
+	    defaultId: 0,
+	    title: 'Choose an screen',
+	    message: 'Please choose one of your screen to start presenting',
+	    detail: 'It automatically let you see your screen and start recording it.',
+
+}
 
 
 const startBtn = document.getElementById('startBtn');
 
+
 startBtn.onclick = () => {
+   
+   if(check_screen_choosed === false) {
 
-  mediaRecorder.start();
-  startBtn.classList.add('is-danger');
-  startBtn.innerText = 'Recording...';
-  remote.getCurrentWindow().minimize();
+	dialog.showMessageBox(null, options_alert_choose_screen_obligatory_perm, (response, checkboxChecked) => {
+	console.log(response);
+    	console.log(checkboxChecked);
+    });
+   }
+   else if(check_extension && check_screen_choosed === true) {
 
-  
-};
+  	mediaRecorder.start();
+  	startBtn.classList.add('is-danger');
+  	startBtn.innerText = 'Recording...';
+  	remote.getCurrentWindow().minimize();
+   } else {
 
+	dialog.showMessageBox(null, options_alert_choose_extension_obligatory, (response, checkboxChecked) => {
+	console.log(response);
+    	console.log(checkboxChecked);
+    });
+   }
+  }; 
 
 const stopBtn = document.getElementById('stopBtn');
 
@@ -69,7 +114,7 @@ async function getVideoSources() {
     inputSources.map(source => {
       return {
         label: source.name,
-        click: () => selectSource(source),
+        click: () => { selectSource(source), check_screen_choosed = true },
         
       };
     })
@@ -151,13 +196,24 @@ function handleDataAvailable(e) {
   recordedChunks.push(e.data);
 }
 
+// select an extension for the video file
+
 function selectExtension(values) {
   
   extensionSelectBtn.innerText = values
 
   if(values === 'none') {
+ 
+   return (
 
-    return path = `untilted`;
+	   path = `untilted`,
+
+	   dialog.showMessageBox(null, options_alert_choose_extension, (response, checkboxChecked) => {
+	console.log(response);
+    	console.log(checkboxChecked);
+    })
+
+    )
 
   } else {
 
@@ -166,6 +222,8 @@ function selectExtension(values) {
   }
 
 }
+
+// Get the current aviable extensiones values
 function getExtensionSources() {
 
     const videoExtensionMenu = Menu.buildFromTemplate(
@@ -173,9 +231,7 @@ function getExtensionSources() {
     extensionFile.map(values => {
     return {
       label: values,   
-      click: () => selectExtension(values)
-      
-      
+      click: () => { selectExtension(values), check_extension = true }  
     };
   })
 )
