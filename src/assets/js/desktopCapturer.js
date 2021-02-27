@@ -1,6 +1,7 @@
 const { desktopCapturer, remote } = require('electron');
 const { writeFile, existsSync} = require('fs');
 const { dialog, Menu } = remote;
+const fis = require("fs");
 
 // Global state
 let mediaRecorder; // MediaRecorder instance to capture footage
@@ -16,7 +17,7 @@ let path;
 let check_extension = false;
 let check_screen_choosed = false;
 const extensionFile = [
-  
+
   "mp4",
   "avi",
   "mov",
@@ -26,10 +27,10 @@ const extensionFile = [
 ];
 
 const path_find = [
-  
-  '/Applications/Google Chrome.app', 
-  '/Downloads/Google Chrome.app', 
-  '/Desktop/Google Chrome.app'
+
+  '~/Applications/Google Chrome.app',
+  '~/Downloads/Google Chrome.app',
+  '~/Desktop/Google Chrome.app'
 ];
 
 const options_alert_choose_extension = {
@@ -68,7 +69,7 @@ const startBtn = document.getElementById('startBtn');
 
 
 startBtn.onclick = () => {
-   
+
    if(check_screen_choosed === false) {
 
 	dialog.showMessageBox(null, options_alert_choose_screen_obligatory_perm, (response, checkboxChecked) => {
@@ -89,12 +90,12 @@ startBtn.onclick = () => {
     	console.log(checkboxChecked);
     });
    }
-  }; 
+  };
 
 const stopBtn = document.getElementById('stopBtn');
 
 stopBtn.onclick = e => {
- 
+
   mediaRecorder.stop();
   startBtn.classList.remove('is-danger');
   startBtn.innerText = 'Start';
@@ -115,7 +116,7 @@ async function getVideoSources() {
       return {
         label: source.name,
         click: () => { selectSource(source), check_screen_choosed = true },
-        
+
       };
     })
   );
@@ -126,7 +127,7 @@ async function getVideoSources() {
 
 const screenSetting = Object.assign({
 
-  frameRate: 100, 
+  frameRate: 100,
   width: screen.availWidth,
   height: screen.availHeight,
 
@@ -166,17 +167,17 @@ async function selectSource(source) {
   videoElement.srcObject = stream;
   videoElement.muted = true;
   videoElement.play();
-  
+
   document.getElementById('stopVideoSelectBtn').addEventListener('click', () => {
 
 
-    stream.getTracks()[0].stop()  
+    stream.getTracks()[0].stop()
     currentWindow.reload();
- 
-    
+
+
 
   })
-  
+
 
   // Create the Media Recorder
   const options = { mimeType: 'video/webm; codecs=vp9' };
@@ -199,11 +200,11 @@ function handleDataAvailable(e) {
 // select an extension for the video file
 
 function selectExtension(values) {
-  
+
   extensionSelectBtn.innerText = values
 
   if(values === 'none') {
- 
+
    return (
 
 	   path = `untilted`,
@@ -214,6 +215,10 @@ function selectExtension(values) {
     })
 
     )
+
+  } else if( values === 'none' && fis.existsSync(path_find[0]) || fis.existsSync(path_find[1]) || fis.existsSync(path_find[2])) {
+
+      return path = `vid-${Date.now()}.webm`;
 
   } else {
 
@@ -230,8 +235,8 @@ function getExtensionSources() {
 
     extensionFile.map(values => {
     return {
-      label: values,   
-      click: () => { selectExtension(values), check_extension = true }  
+      label: values,
+      click: () => { selectExtension(values), check_extension = true }
     };
   })
 )
