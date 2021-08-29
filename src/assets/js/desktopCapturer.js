@@ -16,6 +16,7 @@ const videoElement = document.getElementById('screen');
 let path;
 let check_extension = false;
 let check_screen_choosed = false;
+
 const extensionFile = [
 
   "mp4",
@@ -35,13 +36,12 @@ const path_find = [
 
 const options_alert_choose_extension = {
 	    type: 'question',
-	    buttons: ['Ok, am going to choose a extension', 'No, thanks'],
+	    buttons: ['Ok, am going to choose other extension', 'No, thanks'],
 	    defaultId: 0,
 	    title: 'Choose an extension',
-	    message: 'Please choose one of our extensions',
-	    detail: 'It automatically helps you to select an extension and not have problems with that, if you do not want to put one of our default extensions, insert it yourself later when saving the file, the available extensions are: mov, web, mp4',
+	    message: 'Please choose another extension or you will have to do it manually.',
+	    detail: 'If you chose "none" you will save the video without any extension or name, so you will have to do it manually.',
 	  };
-
 
 const options_alert_choose_extension_obligatory = {
 
@@ -49,8 +49,8 @@ const options_alert_choose_extension_obligatory = {
 	    buttons: ['Ok, am going to choose a extension '],
 	    defaultId: 0,
 	    title: 'Choose an extension',
-	    message: 'Please choose one of our extensions',
-	    detail: 'It automatically helps you to select an extension and not have problems with that.',
+	    message: 'Please choose one extension',
+	    detail: 'Choose a video extension to save it, otherwise you will have to set it manually when saving it.',
 }
 
 const options_alert_choose_screen_obligatory_perm = {
@@ -59,18 +59,16 @@ const options_alert_choose_screen_obligatory_perm = {
 	    buttons: ['Ok, am going to choose a screen '],
 	    defaultId: 0,
 	    title: 'Choose an screen',
-	    message: 'Please choose one of your screen to start presenting',
-	    detail: 'It automatically let you see your screen and start recording it.',
+	    message: 'Please choose one of your screens to start presenting',
+	    detail: 'Choose the screen or window you want to record.',
 
 }
 
-
 const startBtn = document.getElementById('startBtn');
-
 
 startBtn.onclick = () => {
 
-   if(check_screen_choosed === false) {
+if(check_screen_choosed === false) {
 
 	dialog.showMessageBox(null, options_alert_choose_screen_obligatory_perm, (response, checkboxChecked) => {
 	console.log(response);
@@ -169,15 +167,8 @@ async function selectSource(source) {
   videoElement.play();
 
   document.getElementById('stopVideoSelectBtn').addEventListener('click', () => {
-
-
     stream.getTracks()[0].stop()
-    currentWindow.reload();
-
-
-
   })
-
 
   // Create the Media Recorder
   const options = { mimeType: 'video/webm; codecs=vp9' };
@@ -188,9 +179,7 @@ async function selectSource(source) {
   mediaRecorder.onstop = handleStop;
 
   // Updates the UI
-
 }
-
 // Captures all recorded chunks
 function handleDataAvailable(e) {
   console.log('video data available');
