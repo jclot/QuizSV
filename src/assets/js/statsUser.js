@@ -13,19 +13,12 @@ let result;
 function true_false(list) {
 
     if(list.length > 0) {
-
         result = "true";
-
     } else if(list.length <= 0) {
-
         result = "false";
-
     }
-
     return result;
-
 }
-
 
 function get_app_procces() {
 
@@ -37,8 +30,6 @@ function get_app_procces() {
 
     find('name', arr[1], true)
       .then(function (list) {
-
-
             true_false(list)
 
                 fs.writeFile(dir_desktop + '/' + admin_user + '.txt',  Encrypt(safari + result ), function(err) {
@@ -63,7 +54,7 @@ function get_app_procces() {
               }
           });
       });
-    
+
     find('name', arr[2], true)
       .then(function (list) {
 
@@ -77,7 +68,7 @@ function get_app_procces() {
               }
           });
       });
-    
+
     find('name', arr[3], true)
       .then(function (list) {
 
@@ -116,7 +107,7 @@ function Encrypt(params){
 
 document.getElementById('generateBtn').addEventListener('click', () => {
 
-    get_app_procces();z
+    get_app_procces()
     setTimeout(() => { console.log(Encrypt(fs.readFileSync(dir_desktop + '/' + admin_user + '.txt', {encoding: 'utf-8'}))); }, 3000)
 
 })
@@ -124,6 +115,6 @@ document.getElementById('generateBtn').addEventListener('click', () => {
 
 
 
-    
-   
+
+
 
