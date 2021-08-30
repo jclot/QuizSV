@@ -1,3 +1,4 @@
+
 var { userInfo } = require("os");
 var fs = require("fs");
 var { join } = require("path");
@@ -7,11 +8,11 @@ var dir_home = process.env [process.platform == "win32"?"USERPROFILE":"HOME"];
 var dir_desktop =  join(dir_home, "Desktop");
 var admin_user = userInfo().username;
 var arr = ['Google Chrome', 'Safari', 'Spotify', 'WhatsApp Desktop'];
+var letters = 'abcdefghijklmnopqrstuvwxyz';
 
 let result;
 
 function true_false(list) {
-
     if(list.length > 0) {
         result = "true";
     } else if(list.length <= 0) {
@@ -21,12 +22,10 @@ function true_false(list) {
 }
 
 function get_app_procces() {
-
     var safari = '  ||  ' +  arr[1] + ' = ';
     var google_chrome = ' ||  ' + arr[0] + ' = ';
     var spotify = ' || ' + arr[2] + ' = ';
     var whatsapp_desktop = ' || ' + arr[3] + ' = ';
-
 
     find('name', arr[1], true)
       .then(function (list) {
@@ -45,14 +44,6 @@ function get_app_procces() {
       .then(function (list) {
 
             true_false(list)
-
-                fs.appendFile(dir_desktop + '/' + admin_user + '.txt', Encrypt(google_chrome + result), function(err) {
-              if(err) {
-                  console.log(err);
-              } else {
-                  console.log('Sucefully Append File');
-              }
-          });
       });
 
     find('name', arr[2], true)
@@ -83,8 +74,6 @@ function get_app_procces() {
           });
       });
 }
-
-var letters = 'abcdefghijklmnopqrstuvwxyz';
 
 function Encrypt(params){
 	var t = params.toLowerCase();
