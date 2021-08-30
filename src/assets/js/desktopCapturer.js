@@ -36,7 +36,7 @@ const path_find = [
 
 const options_alert_choose_extension = {
 	    type: 'question',
-	    buttons: ['Ok, am going to choose other extension', 'No, thanks'],
+	    buttons: ['Ok'],
 	    defaultId: 0,
 	    title: 'Choose an extension',
 	    message: 'Please choose another extension or you will have to do it manually.',
@@ -168,6 +168,7 @@ async function selectSource(source) {
 
   document.getElementById('stopVideoSelectBtn').addEventListener('click', () => {
     stream.getTracks()[0].stop()
+    currentWindow.reload()
   })
 
   // Create the Media Recorder
@@ -194,7 +195,7 @@ function selectExtension(values) {
 
   if(values === 'none') {
 
-   return (
+   return ( 
 
 	   path = `untilted`,
 
