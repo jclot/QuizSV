@@ -1,6 +1,6 @@
 const { app, BrowserWindow, Menu } = require('electron');
 const path_join = require('path');
-const { isObject } = require('util');
+
 
 // require('update-electron-app')({
 //   repo: 'https://github.com/jclot/QuizSV',
