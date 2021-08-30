@@ -1,16 +1,12 @@
 const electron = require('electron');
 const BrowserWindow = electron.remote.BrowserWindow;
-
 const button = document.getElementById("createW");
-
 const path_file = require('path');
 
 let InstructionsScreen;
 
 const createWindowInstructions = () => {
-
     if (process.platform === "darwin") {
-
         // Create the browser window.
         InstructionsScreen = new BrowserWindow({
             titleBarStyle: 'hidden',
@@ -31,9 +27,7 @@ const createWindowInstructions = () => {
             fullscreen: false,
             backgroundColor: "#fff",
         });
-
     } else if (process.platform === "win32") {
-
         InstructionsScreen = new BrowserWindow({
             titleBarStyle: 'hidden',
             width: 670,
@@ -59,10 +53,6 @@ const createWindowInstructions = () => {
     InstructionsScreen.loadFile(path_file.join(__dirname, 'pages/Instructions.html'));
 
 };
-
-
 button.addEventListener("click", function() {
-
     createWindowInstructions();
-
 })
