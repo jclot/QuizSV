@@ -195,7 +195,7 @@ function selectExtension(values) {
 
   if(values === 'none') {
 
-   return ( 
+   return (
 
 	   path = `untilted`,
 

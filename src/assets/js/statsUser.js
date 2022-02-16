@@ -23,7 +23,7 @@ function true_false(list) {
 
 function get_app_procces() {
     var safari = '  ||  ' +  arr[1] + ' = ';
-    var google_chrome = ' ||  ' + arr[0] + ' = ';
+    // var google_chrome = ' ||  ' + arr[0] + ' = ';
     var spotify = ' || ' + arr[2] + ' = ';
     var whatsapp_desktop = ' || ' + arr[3] + ' = ';
 
